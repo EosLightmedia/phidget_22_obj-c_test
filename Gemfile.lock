@@ -1,0 +1,17 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    bubble-wrap (1.9.6)
+    motion_print (1.2.0)
+    rake (12.3.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bubble-wrap
+  motion_print
+  rake
+
+BUNDLED WITH
+   1.15.4
