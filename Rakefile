@@ -14,8 +14,10 @@ Motion::Project::App.setup do |app|
   app.frameworks +=['AppKit', 'Cocoa', 'Foundation', 'Carbon']
   
   app.embedded_frameworks += ['/Library/Frameworks/Phidget22.framework']
-  # app.vendor_project('./vendor/phidget22', :static)
   app.bridgesupport_files << 'resources/phidget22.bridgesupport'
+  p app.bridgesupport_files
+  app.vendor_project('./vendor/phidget22', :static)
+  
   
   # app.vendor_project('/Library/Frameworks/Phidget22.framework', :static,
   #     :products => ['./vendor/phidget22'],
