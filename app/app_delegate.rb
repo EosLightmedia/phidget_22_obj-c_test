@@ -15,7 +15,7 @@ class AppDelegate
     # serial = 495377
     @phidget = DigitalOutputController.new
     handle = @phidget.start
-    @phidget.initChannel(handle)
+    # @phidget.initChannel(handle)
     
     # @phi = Phidget888Controller.new
     #     # @phi.createRemoteInterfaceKit(App::Persistence['phidget_id'])
@@ -23,6 +23,10 @@ class AppDelegate
     #     mp handle
     #     output_state = @phi.phidgetDigitalOutput_getState(handle)
     #     mp "~~~~~~~~~OUtputstate = #{output_state}"
+  end
+  
+  def test_command
+    mp "THIS IS A TEST"
   end
   
   def setup_notifcations
