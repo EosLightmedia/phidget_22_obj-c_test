@@ -1,28 +1,26 @@
 class AppDelegate
   def applicationDidFinishLaunching(notification)
     buildMenu
-    buildWindow
+    # buildWindow
     # mp PhidgetReturnCode
     setup_notifcations
-    # PhidgetDigitalInput
-    # @phidget.setup_phidget(-1)
-    # @phidget.createDigitalOutput(-1)
-    # @manager = PhiManager.new
-    # @manager.start
-    # @phidget.initChannel()
+
   
     serial = 495511
     # serial = 495377
     @phidget = DigitalOutputController.new
-    handle = @phidget.start
-    # @phidget.initChannel(handle)
+    channel_handle = @phidget.start(495511, port: 0, channel: 1)
+    p "Handle is #{channel_handle}"
+    App.run_after(5) {
+      @phidget.setState(0)
+      sleep 0.5
+      @phidget.setState(1)
+      sleep 0.5
+      @phidget.setState(0)
+    }
+
     
-    # @phi = Phidget888Controller.new
-    #     # @phi.createRemoteInterfaceKit(App::Persistence['phidget_id'])
-    #     handle = @phi.createInterfaceKit(serial)
-    #     mp handle
-    #     output_state = @phi.phidgetDigitalOutput_getState(handle)
-    #     mp "~~~~~~~~~OUtputstate = #{output_state}"
+    # @phidget.initChannel(handle)
   end
   
   def test_command
@@ -57,17 +55,6 @@ class AppDelegate
   #   # // }
   # end
   
-  #Do something with the input change notification
-	def process_input(notification)
-		value = notification.userInfo
-    mp "value is #{value}_______________"
-	end
-  
-  #Do something with the sensor notification
-	def process_sensor(notification)
-		value = notification.userInfo
-    mp "value is #{value}_______________"
-	end
   
   #Handle Errors. Or not.
 	def handle_error(notification)
@@ -78,7 +65,7 @@ class AppDelegate
   #this is called when the phidget 'attaches' to the system (available for talking to)
 	def process_attach(notification)
 		value = notification.userInfo
-    NSLog "Phidget #{value["serial"]} attached (in AppDelegate)"
+    p "Phidget #{value["serial"]} attached (in AppDelegate)"
     # sleep(1) #wait for the phidget to get ready to accept calls. May not need this.
     @phidget_attached = true #this is usefull so you dont' write to a phidget which isn't there
 	end

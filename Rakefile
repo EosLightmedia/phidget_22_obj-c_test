@@ -15,7 +15,6 @@ Motion::Project::App.setup do |app|
   
   app.embedded_frameworks += ['/Library/Frameworks/Phidget22.framework']
   app.bridgesupport_files << 'resources/phidget22.bridgesupport'
-  p app.bridgesupport_files
   app.vendor_project('./vendor/phidget22', :static)
   
   

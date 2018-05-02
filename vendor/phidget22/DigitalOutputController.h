@@ -9,10 +9,15 @@
 @interface DigitalOutputController : NSObject 
 {
     PhidgetDigitalOutputHandle ch;
+    PhidgetDigitalOutputHandle phid;
 
 }
 
 //Phidget functions
+// - (PhidgetHandle) start;
+
+- (void)start:(int)serialNumber port:(int)hubPort  channel:(int)deviceChannel;
+- (void)setState:(double)value;
 
 
 @end
