@@ -11,7 +11,7 @@ end
 Motion::Project::App.setup do |app|
   # Use `rake config' to see complete project settings.
   app.name = 'phidget_22_obj-c'
-  app.frameworks +=['AppKit', 'Cocoa', 'Foundation', 'Carbon']
+  app.frameworks +=['AppKit', 'Cocoa', 'Foundation']
   
   app.embedded_frameworks += ['/Library/Frameworks/Phidget22.framework']
   app.bridgesupport_files << 'resources/phidget22.bridgesupport'

@@ -12,11 +12,14 @@ class AppDelegate
     channel_handle = @phidget.start(495511, port: 0, channel: 1)
     p "Handle is #{channel_handle}"
     App.run_after(5) {
-      @phidget.setState(0)
-      sleep 0.5
-      @phidget.setState(1)
-      sleep 0.5
-      @phidget.setState(0)
+        
+        @phidget.setState(0)
+      100.times{
+        sleep 0.25
+        @phidget.setState(1)
+        sleep 0.02
+        @phidget.setState(0)
+      }
     }
 
     
@@ -38,23 +41,6 @@ class AppDelegate
     #Add the observer for handling errors
 		$center.addObserver(self, selector: "handle_error:", name: 'error_notification_from_phidget', object: nil )
   end
-  
-  # def onAttachHandler(phid)
-  #   mp "on attach handler #{phid}"
-  #   # // - (void)onAttachHandler:(NSValue *)phid{
-  #   # //     PhidgetHandle p = (PhidgetHandle)[phid pointerValue];
-  #   # //     const char* deviceName;
-  #   # //     int32_t serialNumber, channel;
-  #   # //
-  #   # //     Phidget_getDeviceName(p, &deviceName);
-  #   # //     Phidget_getDeviceSerialNumber(p, &serialNumber);
-  #   # //     Phidget_getChannel(p, &channel);
-  #   # //     NSLog(@"Device Name: %@, Serial Number: %d, Channel: %d\n", [NSString stringWithCString:deviceName encoding:NSASCIIStringEncoding],serialNumber,channel);
-  #   # //
-  #   # //     Phidget_release(&p);
-  #   # // }
-  # end
-  
   
   #Handle Errors. Or not.
 	def handle_error(notification)

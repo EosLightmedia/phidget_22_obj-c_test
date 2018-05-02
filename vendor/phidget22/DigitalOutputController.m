@@ -121,6 +121,7 @@ static void gotError(PhidgetHandle phid, void *context, Phidget_ErrorEventCode e
 }
 
 - (void)setState:(double)value{
+	NSLog(@"setting state to %i",value);
     PhidgetDigitalOutput_setState(ch, value);
 }
 
